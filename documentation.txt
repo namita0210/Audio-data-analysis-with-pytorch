@@ -1,0 +1,34 @@
+Out of the available datasets in torchaudio.datasets
+I  have chosen the SPEECH COMMANDS dataset for the following reasons : -
+1. small dataset
+2. available anootations which specify each spoken word in the audio.
+
+EXPLORING THE DATA
+The Speech Commands dataset object returned by datasets.SPEECHCOMMANDS() does not have attributes like 'labels', 'speaker_ids', or 'utterance_numbers'
+instead each sample in the dataset is a tuple containing the waveform tensor, sample rate, label (spoken word), speaker ID, and utterance number.
+
+To explore the contents of the Speech Commands dataset, you typically access the data samples directly using indexing.
+
+-- sample: This variable will be assigned the waveform tensor of the audio sample. It represents the actual audio data in tensor format, which you can analyze, preprocess, or use as input to machine learning models.
+
+-- sample_rate: This variable will be assigned the sample rate of the audio sample. The sample rate indicates how many samples per second are included in the waveform tensor. It is typically measured in Hertz (Hz).
+
+-- label: This variable will be assigned the label (spoken word) associated with the audio sample. For example, if the audio sample contains someone saying "yes", then the label will be "yes".
+
+-- speaker_id: This variable will be assigned the ID of the speaker who uttered the audio sample. This information can be useful for tasks involving speaker recognition or diarization.
+
+-- utterance_number: This variable will be assigned the utterance number of the audio sample. It identifies the specific instance of the spoken word within the dataset.
+
+Overall, the line sample, sample_rate, label, speaker_id, utterance_number = data[0] retrieves the properties of the first audio sample in the Speech Commands dataset and assigns them to individual variables for further analysis or processing.
+
+The shape of the tensor waveform of audio sample will be a one dimensional vector
+of size equal to sampling rate.
+For example if the sampling rate is 16000, then the size of a tensor will be
+pytorch.size[1,16000] : This means that the tensor is one dimensional with a length of 16000
+in other words it is a 1D vector with 16000 elements.
+
+Note that It contains the amplitude values of the audio signal sampled over time.
+
+VISUALIZATION PARAMETERS
+
+
