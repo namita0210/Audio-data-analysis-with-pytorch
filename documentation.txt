@@ -30,5 +30,79 @@ in other words it is a 1D vector with 16000 elements.
 Note that It contains the amplitude values of the audio signal sampled over time.
 
 VISUALIZATION PARAMETERS
+________________________
+
+There are approx 100,000 audio samples in the dataset.
+
+visualizing all of them would be impractical and overwhelming. 
+Instead, you can select a subset of samples to visualize that represent 
+the variety of spoken words, speakers, and recording conditions present in the dataset.
+
+A few things to keep in mind for a holistic visualization are :-
+
+-- Random Sampling: Randomly select a subset of samples from the dataset to visualize. 
+This approach ensures that you get a diverse representation of the dataset without biasing towards specific words or speakers.
+
+-- Stratified Sampling: If the dataset is labeled with spoken words (labels), you can perform stratified sampling to 
+ensure that each spoken word is represented in the subset proportionally to its occurrence in the dataset. 
+This helps ensure that you visualize samples from all spoken words in the dataset.
+
+-- Speaker-Based Sampling:If the dataset includes speaker IDs, you can select samples from different speakers to visualize the
+ variability in speech patterns and accents across speakers.
+
+-- Keyword-Based Sampling: If you're interested in specific spoken words or keywords, you can select samples corresponding to those words
+ for visualization. This can be useful for understanding how different words are pronounced and how their waveforms vary.
+
+-- Environmental Conditions: Consider visualizing samples recorded under different environmental conditions,
+ such as background noise levels, to understand how the audio quality varies across recordings.
+
+-- Error Analysis: If you've already trained a model on the dataset, you can visualize samples that were misclassified or
+ samples that the model struggled with. This can help identify challenging cases and areas for improvement.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
