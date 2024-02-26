@@ -3,6 +3,14 @@ I  have chosen the SPEECH COMMANDS dataset for the following reasons : -
 1. small dataset
 2. available anootations which specify each spoken word in the audio.
 
+IMPORTS
+** Framework - is a set of tools , libraries that provide a foundation for developing something. They also provide pre- built components and functionalities.
+
+- optim : COntaines optimization algorithms like SGD, Adam
+- tqdm : Provides progress bars for loops and iterable tasks to monitor lengthy operations.
+- torchaudio.functional : Contains various functional operations for audio processing like resampling , filtering etc.
+- torchaudio.transforms : Contains transformations like spectrogram , time-frequency transformations.
+
 EXPLORING THE DATA
 The Speech Commands dataset object returned by datasets.SPEECHCOMMANDS() does not have attributes like 'labels', 'speaker_ids', or 'utterance_numbers'
 instead each sample in the dataset is a tuple containing the waveform tensor, sample rate, label (spoken word), speaker ID, and utterance number.
