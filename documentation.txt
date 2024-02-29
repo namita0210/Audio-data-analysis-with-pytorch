@@ -1,9 +1,9 @@
 ABOUT SPEECH COMMANDS DATASET
 __________________________________
-Out of the available datasets in torchaudio.datasets
-I  have chosen the SPEECH COMMANDS dataset for the following reasons : -
+Out of the available datasets in torchaudio.datasets I  have chosen the SPEECH COMMANDS dataset for the following reasons : -
+
 1. small dataset
-2. available anootations which specify each spoken word in the audio.
+2. available annotations which specify each spoken word in the audio.
 3. It is a dataset of 35 commands spoken by different people.
 4. All audio files are about 1 second long
 
