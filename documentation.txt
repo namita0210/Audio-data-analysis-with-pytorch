@@ -15,9 +15,22 @@ IMPORTS
 _________________
 ** Framework - is a set of tools , libraries that provide a foundation for developing something. They also provide pre- built components and functionalities.
 
-- optim : COntaines optimization algorithms like SGD, Adam
+** module - set of self contained unit of software that encapsulates related functions, variables and other elements.
+
+** interface - defines how the other parts of the program can interact with the functionality provided by a module without needing to know the internal implementation details.
+
+- pytorch : Provides tensor computation (similar to NumPy) and GPU acceleration support.
+
+- torch.nn : nn is a neural network module which includes pre defined layers, loss functions and other utilities for building neural networks.
+
+- torch.nn.functional : Imports the functional interface of the nn module provides activation functions , convolutional operations and other functionalities that are commonly used in neural networks.
+
+- optim : Contains optimization algorithms like SGD, Adam
+
 - tqdm : Provides progress bars for loops and iterable tasks to monitor lengthy operations.
+
 - torchaudio.functional : Contains various functional operations for audio processing like resampling , filtering etc.
+
 - torchaudio.transforms : Contains transformations like spectrogram , time-frequency transformations.
 
 SPLIT THE AUDIO DATA INTO TRAINING , TESTING , AND VALIDATION SUBSETS
