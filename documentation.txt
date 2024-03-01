@@ -156,7 +156,27 @@ NOTE : after instantiating the class subsetSC we got a list of audio recordings.
 Now we want to turn that list into two batched tensors for the model. 
 (Also note that data in the SPEECHCOMMANDS dataset is in the form of tuples which already contain the tensor representation of audio)
 
-WHAT ARE TWO BATCH TENSORS AND WHAT ARE THEY USED FOR AND HOW ARE THEY UNRELATED TO THE TENSORS IN THE TUPLES 
+WHAT ARE TWO BATCH TENSORS AND WHAT ARE THEY USED FOR AND HOW ARE THEY UNRELATED TO THE TENSORS IN THE TUPLES ?
+
+Two Batched tensors allow parallel processing of multiple data instances. 
+
+- Before that make all the tensors in a batch of the same length by padding with zeroes.
+
+- Pytorch has a pad_sequence function in the module torch.nn.utils.rnn
+This function is commonly used in NLP, particularly when dealing with sequences of variable lengths.
+
+batch = [item.t() for item in batch]: This line transposes each tensor in the batch using .t(). Transposing is performed to ensure that padding is applied correctly along the correct dimension. After this operation, the sequences are represented as columns in each tensor.
+
+--> ```torch.nn.utils.rnn.pad_sequence(batch, batch_first=True, padding_value=0.)```
+
+- batch : a list of tensors each representing a sequence which may have different lengths.
+
+- padding_value=0.: This argument specifies the value used for padding shorter sequences to match the length of the longest sequence in the batch. In this case, 0. (float zero) is used as the padding value.
+
+- batch_first=True: This argument specifies whether the batch dimension should be the first dimension in the output tensor. If True, the output tensor will have shape (batch_size, max_sequence_length, *). If False, the output tensor will have shape (max_sequence_length, batch_size, *), where max_sequence_length is the length of the longest sequence in the batch.
+
+return batch.permute(0, 2, 1): After padding, the dimensions of the resulting tensor are permuted using .permute() method. This rearranges the dimensions of the tensor to match a specific order. In this case, permute(0, 2, 1) reorders the dimensions so that the batch dimension remains first, followed by the sequence length dimension, and finally the feature dimension. This step ensures that the tensor has the correct shape for further processing, as some PyTorch modules expect a specific order of dimensions.
+
 
 VISUALIZATION PARAMETERS
 ________________________
