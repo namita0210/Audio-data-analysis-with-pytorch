@@ -135,7 +135,28 @@ FORMATTING THE DATA
 ____________________
 This process is called downsampling. It's like squeezing the audio to make it take up less space, so the computer can process it faster.
 
-Now, sometimes with other collections of sound recordings, you might have files that have more than one audio channel, like having sound come from both the left and right side of your headphones. But in our case, each recording we have only has one channel, which is perfect for what we need. So, we don't need to do anything special to handle multiple channels because there's only one channel to begin with. We can just focus on the single channel we have and work with that.
+This is a good place to apply transformations to the data. For the waveform, we downsample the audio for faster processing without losing too much of the classification power.
+
+```new_sample_rate = 8000
+transform = torchaudio.transforms.Resample(orig_freq=sample_rate, new_freq=new_sample_rate)
+transformed = transform(waveform)
+```
+Earlier the sampling rate was 16000, I made it 8000
+
+Now, sometimes with other collections of sound recordings, you might have files that have more than one audio channel, like having sound come from both the left and right side of your headphones. 
+
+But in our case, each recording we have only has one channel, which is perfect for what we need. 
+
+So, we don't need to do anything special to handle multiple channels because there's only one channel to begin with. We can just focus on the single channel we have and work with that.
+
+--> ENCODING EACH WORD USING ITS INDEX IN THE LIST OF LABELS
+
+
+NOTE : after instantiating the class subsetSC we got a list of audio recordings.
+Now we want to turn that list into two batched tensors for the model. 
+(Also note that data in the SPEECHCOMMANDS dataset is in the form of tuples which already contain the tensor representation of audio)
+
+WHAT ARE TWO BATCH TENSORS AND WHAT ARE THEY USED FOR AND HOW ARE THEY UNRELATED TO THE TENSORS IN THE TUPLES 
 
 VISUALIZATION PARAMETERS
 ________________________
