@@ -177,6 +177,41 @@ batch = [item.t() for item in batch]: This line transposes each tensor in the ba
 
 return batch.permute(0, 2, 1): After padding, the dimensions of the resulting tensor are permuted using .permute() method. This rearranges the dimensions of the tensor to match a specific order. In this case, permute(0, 2, 1) reorders the dimensions so that the batch dimension remains first, followed by the sequence length dimension, and finally the feature dimension. This step ensures that the tensor has the correct shape for further processing, as some PyTorch modules expect a specific order of dimensions.
 
+COLLATE FUNCTION
+
+This code defines a function named collate_fn that serves as a custom collation function for data loading in PyTorch. Let's break down each part of the function:
+
+Input Argument:
+
+batch: This argument represents a list of data tuples. Each data tuple contains information about a single sample, typically consisting of the waveform (audio data), sample rate, label (class/category), speaker ID, and utterance number.
+Initialization:
+
+tensors, targets = [], []: Two empty lists, tensors and targets, are initialized. These lists will be used to gather the waveforms and labels from the batch, respectively.
+Processing Data Tuples:
+
+The function iterates over each data tuple in the batch using a for loop. For each tuple, it extracts the waveform and label information. Since the function only requires the waveform and label, other elements such as sample rate, speaker ID, and utterance number are ignored (using _ to denote unused variables).
+The label is then encoded as an index using the label_to_index function. This likely converts the label from its original string format to a numerical index, which is commonly used in machine learning tasks.
+Batch Preparation:
+
+After gathering the waveforms and labels from the batch, the list of tensors (waveforms) is passed to the pad_sequence function. This function pads the individual tensors in the list to make them the same length, producing a batched tensor where sequences are padded with zeros.
+The list of encoded labels is converted into a single tensor using torch.stack(). This function concatenates the tensors along a new dimension, creating a single tensor representing the labels for the entire batch.
+Output:
+
+The function returns two objects: the batched tensor of waveforms (tensors) and the tensor of labels (targets). These objects are typically used as input to a neural network model during training or evaluation.
+Overall, this collate_fn function is responsible for preprocessing a batch of data tuples, preparing the waveforms as a batched tensor and encoding the labels as numerical indices, ready to be consumed by a machine learning model in PyTorch.
+
+DATA LOADERS
+ data loaders play a crucial role in the training and evaluation pipeline of machine learning models by efficiently loading and preprocessing data from datasets. They enable batch processing, shuffling, preprocessing, and parallelism, making it easier for researchers and practitioners to work with large-scale datasets and train complex models.
+
+Two data loaders are created: train_loader for the training dataset and test_loader for the testing dataset.
+Each data loader is created using torch.utils.data.DataLoader, which provides an iterable over a dataset, supporting batch processing and multi-threading.
+For both loaders, the dataset (train_set for train_loader and test_set for test_loader) is specified as the first argument.
+batch_size is set to the previously defined value.
+shuffle=True is used for the training loader to shuffle the dataset before creating batches, while shuffle=False is used for the testing loader to maintain the order of the dataset.
+drop_last=False ensures that the last batch is not dropped if it's smaller than the specified batch size.
+collate_fn=collate_fn specifies a custom collation function collate_fn to be used for batch creation.
+num_workers and pin_memory are set based on the device as determined earlier.
+
 
 VISUALIZATION PARAMETERS
 ________________________
